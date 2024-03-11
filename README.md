@@ -1,5 +1,10 @@
 # QLearning
 
+QLearning Source From: https://technobium.com/reinforcement-learning-q-learning-java/
+
+# Questions
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
 1. What is Q Learning? What does the Q stand for (and what about the "Learning")?
 
 Q Learning is a generalized algorithm that is meant to teach AI how to act. It is particuarly used when an AI is attempting to learn one very specific goal, rather than generalized knowledge or action/reaction. It works similarly to Psychology's Behaviorism, in that actions are given a specific reward based on a specfic action. In a way, it is a form of operant condition.
