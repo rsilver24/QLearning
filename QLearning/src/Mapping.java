@@ -37,4 +37,8 @@ public class Mapping {
             e.printStackTrace();
         }
     }
+
+    public static void main(String[] args) {
+        createMap();
+    }
 }
