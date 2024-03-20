@@ -1,7 +1,9 @@
-package com.technobium.rl;
+// Roan Silver      Created: March 8th, 2024        Last Edits: March 20th, 2024
+// Collaborators: https://github.com/technobium/q-learning-java
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -21,6 +23,10 @@ public class QLearning {
     private char[][] maze;  // Maze read from file
     private int[][] R;       // Reward lookup
     private double[][] Q;    // Q learning
+
+    public QLearning(){
+        init();
+    }
 
 
     public static void main(String args[]) {
@@ -147,18 +153,18 @@ public class QLearning {
     }
     // Used for debug
     void printR(int[][] matrix) {
-        System.out.printf("%25s", "States: ");
+        //System.out.printf("%25s", "States: ");
         for (int i = 0; i <= 8; i++) {
-            System.out.printf("%4s", i);
+            //System.out.printf("%4s", i);
         }
-        System.out.println();
+        //System.out.println();
 
         for (int i = 0; i < statesCount; i++) {
-            System.out.print("Possible states from " + i + " :[");
+            //System.out.print("Possible states from " + i + " :[");
             for (int j = 0; j < statesCount; j++) {
-                System.out.printf("%4s", matrix[i][j]);
+                //System.out.printf("%4s", matrix[i][j]);
             }
-            System.out.println("]");
+            //System.out.println("]");
         }
     }
 
@@ -221,9 +227,9 @@ public class QLearning {
     }
 
     void printPolicy() {
-        System.out.println("\nPrint policy");
+        //System.out.println("\nPrint policy");
         for (int i = 0; i < statesCount; i++) {
-            System.out.println("From state " + i + " goto state " + getPolicyFromState(i));
+            //System.out.println("From state " + i + " goto state " + getPolicyFromState(i));
         }
     }
 
@@ -253,6 +259,29 @@ public class QLearning {
                 System.out.printf("%6.2f ", (Q[i][j]));
             }
             System.out.println();
+        }
+    }
+
+    public void completeToFile(){
+        init();
+        calculateQ();
+        try{
+            FileWriter fw = new FileWriter("Results.txt");
+            fw.write("Here is the path you should take:");
+            fw.write(String.format("%n"));
+
+            fw.write(String.format("%n"));
+            fw.write("Q matrix");
+            fw.write(String.format("%n"));
+            for (int i = 0; i < Q.length; i++){
+                fw.write("From state " + i + ": ");
+                for (int j = 0; j < Q[i].length; j++){
+                    fw.write(" | " + String.format("%.2g", Q[i][j]%1));
+                } fw.write(String.format("%n"));
+            } fw.close();
+        } catch(IOException e){
+            System.out.println("idk an error happened or smthn");
+            e.printStackTrace();
         }
     }
 }
